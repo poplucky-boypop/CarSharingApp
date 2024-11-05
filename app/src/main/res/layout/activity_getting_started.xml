@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="24dp"
+    android:gravity="center_horizontal"
+
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="76dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="@string/drivenext"
+            android:textColor="#2A1246"
+            android:fontFamily="@font/montserrat_bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="@string/helpyoufindyournexttrip"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/image"
+        android:src="@drawable/welcome"
+        android:layout_marginTop="60dp"/>
+
+<android.widget.Button
+    android:id="@+id/btnStartLogin"
+    android:layout_width="match_parent"
+    style="@style/btnFiolStyle"
+    android:layout_marginTop="30dp"
+    android:text="@string/enter" />
+
+<android.widget.Button
+    android:id="@+id/btnStartRegistration"
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    android:background="@drawable/shape_button_registration"
+    android:layout_marginTop="30dp"
+    android:text="@string/register"
+    android:textSize="16sp"
+    android:textColor="#344054"
+    android:textAllCaps="false"/>
+
+
+
+</LinearLayout>
