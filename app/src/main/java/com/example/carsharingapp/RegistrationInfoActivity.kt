@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +37,11 @@ class RegistrationInfoActivity : AppCompatActivity() {
         val userName: EditText = findViewById(R.id.etName)
         val userMidllename: EditText = findViewById(R.id.etMidllename)
         userDateBirth = findViewById<EditText>(R.id.etDateBirth)
+        val male : RadioButton = findViewById(R.id.rbMale)
+
+        val email = intent.getStringExtra("email")
+        val password = intent.getStringExtra("password")
+        //userSurname.setText(email)
 
 
         //userDateBirth.setOnClickListener
@@ -48,6 +54,14 @@ class RegistrationInfoActivity : AppCompatActivity() {
 
             if (surname != "" && name != "" && midllename != "" && dateBirth != ""){
                 val intent = Intent(this, RegistrationDriverActivity::class.java)
+                intent.putExtra("email", email)
+                intent.putExtra("password", password)
+                intent.putExtra("surname", surname)
+                intent.putExtra("name", name)
+                intent.putExtra("midllename", midllename)
+                intent.putExtra("dateBirth", dateBirth)
+                if (male.isChecked) { intent.putExtra("gender", "М") }
+                else { intent.putExtra("gender", "Ж") }
                 startActivity(intent)
             }
 

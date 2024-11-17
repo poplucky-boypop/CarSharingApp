@@ -2,16 +2,28 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "818114af07f0b0f1dd94d332699f1686",
+    "identityHash": "2d2b9ed3f41cb100b1c05bfae9d57e55",
     "entities": [
       {
-        "tableName": "user_info_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT NOT NULL, `second_name` TEXT NOT NULL, `midlle_name` TEXT NOT NULL, `dateBirth` TEXT NOT NULL, `gender` TEXT NOT NULL, `driver_license` TEXT NOT NULL, `date_issue` TEXT NOT NULL)",
+        "tableName": "user_login_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `email` TEXT NOT NULL COLLATE NOCASE, `password` TEXT NOT NULL, `first_name` TEXT NOT NULL, `second_name` TEXT NOT NULL, `midlle_name` TEXT NOT NULL, `dateBirth` TEXT NOT NULL, `gender` TEXT NOT NULL, `driver_license` TEXT NOT NULL, `date_issue` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "password",
+            "columnName": "password",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -63,12 +75,22 @@
             "id"
           ]
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_user_login_table_email",
+            "unique": true,
+            "columnNames": [
+              "email"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_user_login_table_email` ON `${TABLE_NAME}` (`email`)"
+          }
+        ],
         "foreignKeys": []
       },
       {
-        "tableName": "user_login_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `email` TEXT NOT NULL, `password` TEXT NOT NULL, `info_id` INTEGER NOT NULL, FOREIGN KEY(`info_id`) REFERENCES `user_info_table`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "tableName": "car_info",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `brand` TEXT NOT NULL, `price` TEXT NOT NULL, `transmission` TEXT NOT NULL, `fuel` TEXT NOT NULL, `description` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -77,21 +99,39 @@
             "notNull": true
           },
           {
-            "fieldPath": "email",
-            "columnName": "email",
+            "fieldPath": "name",
+            "columnName": "name",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "password",
-            "columnName": "password",
+            "fieldPath": "brand",
+            "columnName": "brand",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "infoId",
-            "columnName": "info_id",
-            "affinity": "INTEGER",
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "transmission",
+            "columnName": "transmission",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fuel",
+            "columnName": "fuel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -101,36 +141,14 @@
             "id"
           ]
         },
-        "indices": [
-          {
-            "name": "index_user_login_table_id",
-            "unique": false,
-            "columnNames": [
-              "id"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_user_login_table_id` ON `${TABLE_NAME}` (`id`)"
-          }
-        ],
-        "foreignKeys": [
-          {
-            "table": "user_info_table",
-            "onDelete": "NO ACTION",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "info_id"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          }
-        ]
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '818114af07f0b0f1dd94d332699f1686')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2d2b9ed3f41cb100b1c05bfae9d57e55')"
     ]
   }
 }

@@ -13,6 +13,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import com.example.carsharingapp.data.UserDatabase
+import com.example.carsharingapp.data.UserLoginEntity
+import kotlinx.coroutines.launch
 
 class RegistrationActivity : AppCompatActivity() {
 
@@ -42,8 +46,37 @@ class RegistrationActivity : AppCompatActivity() {
             val password = userPassword.text.toString()
             val repeatPassword = userRepeatPassword.text.toString()
 
+            val db = UserDatabase.getDatabase(this)
+
             if (email != "" && password != "" && repeatPassword == password && acceptRules.isChecked()) {
-                val intent = Intent(this, RegistrationInfoActivity::class.java)
+                lifecycleScope.launch {
+                    val userSingInTuple = db.getUserDao().findByEmail(email)
+                    if (userSingInTuple != null) {
+                        // Сделать, что такой email уже есть
+                    } else {
+                        val intent = Intent(this@RegistrationActivity, RegistrationInfoActivity::class.java)
+
+                        intent.putExtra("email", email)
+                        intent.putExtra("password", password)
+                        startActivity(intent)
+                    }
+                }
+
+                /*val userLogin = UserLoginEntity(
+                    null,
+                    email,
+                    password
+                )
+                Thread{
+                    db.getUserDao().addUser(userLogin)
+                }.start()*/
+
+                /*val userSingInTuple = db.getUserDao().findByEmail(email)
+                //val intent = Intent(this, RegistrationInfoActivity::class.java)
+                if (userSingInTuple != null) {
+                    saveAuthToken(userSingInTuple.id.toString())
+                }*/
+                val intent = Intent(this, ProgramMenuActivity::class.java)
                 startActivity(intent)
             }
         }
@@ -76,5 +109,12 @@ class RegistrationActivity : AppCompatActivity() {
         }
         isPasswordVisible = !isPasswordVisible
         //editText.setSelection(editText.text.length) // Устанавливаем курсор в конец текста
+    }
+
+    fun saveAuthToken(token: String) {
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("auth_token", token)
+        editor.apply()
     }
 }

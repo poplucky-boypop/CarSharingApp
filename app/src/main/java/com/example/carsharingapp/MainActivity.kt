@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         val btnStartLogin = findViewById<android.widget.Button>(R.id.btnStartLogin)
 
         btnStartLogin.setOnClickListener {
-            //val intent = Intent(this, LoginActivity::class.java)
-            val intent = Intent(this, ProgramMenuActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
+            //val intent = Intent(this, ProgramMenuActivity::class.java)
             startActivity(intent)
         }
 

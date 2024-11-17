@@ -32,7 +32,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/tvProfileFIO"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Иван Иванов"
@@ -47,7 +47,7 @@
             android:text="Присоединился в июле 2024"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/tvProfileFIO" />
 
         <LinearLayout
             android:id="@+id/linearLayout7"
@@ -64,6 +64,7 @@
                 android:text="Электорнная почта" />
 
             <TextView
+                android:id="@+id/tvProfileEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ivanov@mtuci.ru" />
@@ -104,6 +105,7 @@
                 android:text="Пол" />
 
             <TextView
+                android:id="@+id/tvProfileGender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Мужской" />
@@ -130,6 +132,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvExitAccount"
             style="@style/textHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -23,8 +23,17 @@ class SplashActivity : AppCompatActivity() {
 
             if (onboardingComplete) {
                 // Если онбординг завершён, переходим в MainActivity
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                val token = getAuthToken()
+                if (token == null) {
+                    // Если токен отсутствует, перенаправляем на экран входа
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(this, ProgramMenuActivity::class.java)
+                    startActivity(intent)
+                }
+                //val intent = Intent(this, MainActivity::class.java)
+                //startActivity(intent)
             } else {
                 // Если онбординг не пройден, переходим на OnboardingActivity
                 val intent = Intent(this, OnboardingActivity::class.java)
@@ -33,5 +42,10 @@ class SplashActivity : AppCompatActivity() {
             // Закрываем SplashActivity
             finish()
         }, 2000) // Задержка на 2 секунды
+    }
+
+    fun getAuthToken(): String? {
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        return sharedPreferences.getString("auth_token", null)
     }
 }

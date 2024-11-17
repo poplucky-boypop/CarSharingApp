@@ -10,6 +10,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import com.example.carsharingapp.data.UserDatabase
+import com.example.carsharingapp.data.UserLoginEntity
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
 class RegistrationDriverActivity : AppCompatActivity() {
@@ -32,13 +36,47 @@ class RegistrationDriverActivity : AppCompatActivity() {
         val userDriverLicense: EditText = findViewById(R.id.etDriverLicense)
         userDateIssue = findViewById(R.id.etDateIssue)
 
+        val email = intent.getStringExtra("email")
+        val password = intent.getStringExtra("password")
+        val surname = intent.getStringExtra("surname")
+        val name = intent.getStringExtra("name")
+        val midllename = intent.getStringExtra("midllename")
+        val dateBirth = intent.getStringExtra("dateBirth")
+        val gender = intent.getStringExtra("gender")
+
+        //userDriverLicense.setText(email)
+
         btnNext.setOnClickListener {
             val driverLicense = userDriverLicense.text.toString()
             val dateIssue = userDateIssue.text.toString()
 
+            val db = UserDatabase.getDatabase(this)
+
             if (driverLicense != "" && dateIssue != ""){
-                val intent = Intent(this, SuccessRegistrationActivity::class.java)
-                startActivity(intent)
+                val userLogin = UserLoginEntity(
+                    null,
+                    email?: "",
+                    password?: "",
+                    surname?: "",
+                    name?: "",
+                    midllename?: "",
+                    dateBirth?: "",
+                    gender?: "",
+                    driverLicense,
+                    dateIssue
+                )
+                Thread{
+                    db.getUserDao().addUser(userLogin)
+                }.start()
+                lifecycleScope.launch {
+                    val userSingInTuple = db.getUserDao().findByEmail(email?:" ")
+                    if (userSingInTuple != null && userSingInTuple.password == password) {
+                        saveAuthToken(userSingInTuple.id.toString())
+                        val intent = Intent(this@RegistrationDriverActivity, SuccessRegistrationActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+
             }
 
         }
@@ -58,6 +96,13 @@ class RegistrationDriverActivity : AppCompatActivity() {
             editText.setText(selectedDate)
         }, year, month, day)
         datePickerDialog.show()
+    }
+
+    fun saveAuthToken(token: String) {
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("auth_token", token)
+        editor.apply()
     }
 
 
