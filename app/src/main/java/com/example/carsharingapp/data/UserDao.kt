@@ -15,4 +15,10 @@ interface UserDao {
 
     @Query("SELECT * FROM user_login_table WHERE id = :userId")
     suspend fun getById(userId: Long): UserLoginEntity //Flow<UserLoginEntity>
+
+    @Query("SELECT * FROM car_info")
+    suspend fun getAllCars(): List<CarInfo>
+
+    @Query("SELECT * FROM car_info WHERE name LIKE '%'||:name||'%'")
+    suspend fun getCarsByName(name: String): List<CarInfo>
 }

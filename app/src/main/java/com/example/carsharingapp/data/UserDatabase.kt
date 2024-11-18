@@ -30,7 +30,7 @@ abstract class UserDatabase: RoomDatabase() {
                     context.applicationContext,
                     UserDatabase::class.java,
                     "user_database.db"
-                ).build()
+                ).createFromAsset("inital_database.db").build()
                 INSTANCE = instance
                 return instance
             }

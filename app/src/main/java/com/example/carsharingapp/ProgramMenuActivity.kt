@@ -36,5 +36,10 @@ class ProgramMenuActivity : AppCompatActivity() {
             }
         }.attach()
 
+        viewPager.setPageTransformer { page, position ->
+            page.requestLayout()
+        }
+
+
     }
 }

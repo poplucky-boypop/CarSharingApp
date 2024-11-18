@@ -60,16 +60,16 @@ class SettingsFragment : Fragment() {
         themeSection.setOnClickListener {
             // Замените фрагмент на ThemeFragment
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ProfileFragment()) // Убедитесь, что fragment_container — это ID контейнера, где размещается фрагмент
+                .replace(R.id.fragment_container_settings, ProfileFragment()) // Убедитесь, что fragment_container — это ID контейнера, где размещается фрагмент
                 .addToBackStack(null) // Добавьте транзакцию в back stack для возврата
                 .commit()
         }
     }
 
-    override fun onResume() {
+    /*override fun onResume() {
         super.onResume()
         binding.root.requestLayout()
-    }
+    }*/
 
     fun getAuthToken(): String? {
         val sharedPreferences = requireContext().getSharedPreferences("user_prefs", MODE_PRIVATE)
