@@ -54,12 +54,18 @@ class SearchFilteredCarsFragment : Fragment() {
         val db = UserDatabase.getDatabase(requireContext())
         lifecycleScope.launch {
             mList = db.getUserDao().getCarsByName(query.toString())
+            if (mList.size == 0) {
+                val tvNoSearchCar = view.findViewById<TextView>(R.id.tvNoSearchCar)
+                tvNoSearchCar.visibility = View.VISIBLE
+            }
             adapter = RecyclerCarsAdapter(mList)
             recyclerView.post {
                 recyclerView.adapter = adapter
                 //recyclerView.requestLayout()
             }
+            recyclerView.isNestedScrollingEnabled = false
             recyclerView.requestLayout()
+
             //recyclerView.adapter = adapter
         }
 

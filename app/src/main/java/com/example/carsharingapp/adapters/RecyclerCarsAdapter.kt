@@ -28,6 +28,7 @@ class RecyclerCarsAdapter(var mList: List<CarInfo>) :
 
     override fun getItemCount(): Int {
         return mList.size
+        //return 1
     }
 
     override fun onBindViewHolder(holder: RecyclerCarsViewHolder, position: Int) {

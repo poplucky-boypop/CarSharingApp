@@ -54,20 +54,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="24dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Электорнная почта" />
+                android:text="Электорнная почта"
+                android:paddingStart="24dp"
+                style="@style/textTitleCategoryProfile"/>
 
             <TextView
                 android:id="@+id/tvProfileEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ivanov@mtuci.ru" />
+                android:text="ivanov@mtuci.ru"
+                android:paddingStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                style="@style/textSubtitleCategoryProfile"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D0D5DD"/>
         </LinearLayout>
 
         <LinearLayout
@@ -75,19 +86,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="24dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Пароль" />
+                android:text="Пароль"
+                android:paddingStart="24dp"
+                style="@style/textTitleCategoryProfile"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Поменять пароль" />
+                android:text="Поменять пароль"
+                android:paddingStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                style="@style/textSubtitleCategoryProfile"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D0D5DD"/>
         </LinearLayout>
 
         <LinearLayout
@@ -95,20 +116,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="24dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Пол" />
+                android:text="Пол"
+                android:paddingStart="24dp"
+                style="@style/textTitleCategoryProfile"/>
 
             <TextView
                 android:id="@+id/tvProfileGender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Мужской" />
+                android:text="Мужской"
+                android:paddingStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                style="@style/textSubtitleCategoryProfile"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D0D5DD"/>
         </LinearLayout>
 
         <LinearLayout
@@ -116,28 +147,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="24dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Google" />
+                android:text="Google"
+                android:paddingStart="24dp"
+                style="@style/textTitleCategoryProfile"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Пусто" />
+                android:text="Пусто"
+                android:paddingStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                style="@style/textSubtitleCategoryProfile"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D0D5DD"/>
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvExitAccount"
-            style="@style/textHeading"
+            style="@style/textTitleCategoryProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Выйти из профиля"
             android:paddingStart="24dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout14" />
 
