@@ -68,14 +68,22 @@ class RegistrationDriverActivity : AppCompatActivity() {
                 Thread{
                     db.getUserDao().addUser(userLogin)
                 }.start()
-                lifecycleScope.launch {
+                /*lifecycleScope.launch {
                     val userSingInTuple = db.getUserDao().findByEmail(email?:" ")
-                    if (userSingInTuple != null && userSingInTuple.password == password) {
+                    if (userSingInTuple != null) {
                         saveAuthToken(userSingInTuple.id.toString())
-                        val intent = Intent(this@RegistrationDriverActivity, SuccessRegistrationActivity::class.java)
-                        startActivity(intent)
                     }
-                }
+                    val intent = Intent(this@RegistrationDriverActivity, SuccessRegistrationActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent)
+                    finish()
+                }*/
+                val intent = Intent(this, SuccessRegistrationActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent)
+                finish()
 
             }
 

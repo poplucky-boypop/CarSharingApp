@@ -76,8 +76,8 @@ class RegistrationActivity : AppCompatActivity() {
                 if (userSingInTuple != null) {
                     saveAuthToken(userSingInTuple.id.toString())
                 }*/
-                val intent = Intent(this, ProgramMenuActivity::class.java)
-                startActivity(intent)
+                //val intent = Intent(this, ProgramMenuActivity::class.java)
+                //startActivity(intent)
             }
         }
         userPassword.setOnTouchListener { _, event ->

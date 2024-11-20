@@ -23,8 +23,15 @@ class SuccessRegistrationActivity : AppCompatActivity() {
         val btnEnd: android.widget.Button = findViewById(R.id.btnEndRegistration)
 
         btnEnd.setOnClickListener {
-            val intent = Intent(this, ProgramMenuActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        super.onBackPressed()
     }
 }
