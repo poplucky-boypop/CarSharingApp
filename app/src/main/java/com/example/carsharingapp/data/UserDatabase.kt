@@ -6,11 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    version = 1,
+    version = 3,
     entities = [
         //UserInfo::class,
         UserLoginEntity::class,
-        CarInfo::class
+        CarInfo::class,
+        CarBookmarksEntity::class
     ]
 )
 abstract class UserDatabase: RoomDatabase() {
@@ -37,3 +38,5 @@ abstract class UserDatabase: RoomDatabase() {
         }
     }
 }
+
+//.fallbackToDestructiveMigration()

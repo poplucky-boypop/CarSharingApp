@@ -21,4 +21,16 @@ interface UserDao {
 
     @Query("SELECT * FROM car_info WHERE name LIKE '%'||:name||'%'")
     suspend fun getCarsByName(name: String): List<CarInfo>
+
+    @Insert(entity = CarBookmarksEntity::class)
+    suspend fun addBookmark(bookmark: CarBookmarksEntity)
+
+    @Query("SELECT id_car_foreign FROM car_bookmarks WHERE id_user_foreign = :idUser")
+    suspend fun findBookmarksByIdUser(idUser: Long): List<Long>
+
+    @Query("SELECT * FROM car_info WHERE id IN (:listBookmarks)")
+    fun findCarsInBookmarks(listBookmarks: List<Long>): Flow<List<CarInfo>> //List<CarInfo>
+
+    @Query("SELECT * FROM car_bookmarks WHERE id_user_foreign = :idUser AND id_car_foreign = :idCar")
+    suspend fun findCarInBookmarksById(idUser: Long, idCar: Long): CarBookmarksEntity
 }

@@ -49,11 +49,25 @@ class HomePageFragment : Fragment() {
         lifecycleScope.launch {
             mList = db.getUserDao().getAllCars()
             adapter = RecyclerCarsAdapter(mList)
-            recyclerView.post {
-                recyclerView.adapter = adapter
-                //recyclerView.requestLayout()
-            }
+            //recyclerView.post {
                 //recyclerView.adapter = adapter
+                //recyclerView.requestLayout()
+            //}
+            recyclerView.adapter = adapter
+            adapter.onButtonClick = { carInfo ->
+                val fragmentCarProfile = CarProfileFragment()
+                val bundle2 = Bundle()
+                bundle2.putParcelable("car_info", carInfo)
+
+
+                fragmentCarProfile.arguments = bundle2
+
+                // Заменить текущий фрагмент на FragmentB
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_home_page, fragmentCarProfile)
+                    .addToBackStack(null)
+                    .commit()
+            }
         }
 
         /*searchView.setOnClickListener {

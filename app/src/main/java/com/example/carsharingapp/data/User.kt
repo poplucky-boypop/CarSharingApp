@@ -1,10 +1,12 @@
 package com.example.carsharingapp.data
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 
 /*@Entity(tableName = "user_info_table")
@@ -54,6 +56,7 @@ data class UserLoginEntity (
     @ColumnInfo(name = "date_issue") val dateIssue: String
 )
 
+@Parcelize
 @Entity(tableName = "car_info")
 data class CarInfo (
     @PrimaryKey(autoGenerate = true)
@@ -64,4 +67,13 @@ data class CarInfo (
     val transmission: String,
     val fuel: String,
     val description: String
+) : Parcelable
+
+
+@Entity(tableName = "car_bookmarks")
+data class CarBookmarksEntity (
+    @PrimaryKey(autoGenerate = true)
+    val id: Long? = null,
+    @ColumnInfo(name = "id_user_foreign") val idUserForeign: Long,
+    @ColumnInfo(name = "id_car_foreign") val idCarForeign: Long
 )
