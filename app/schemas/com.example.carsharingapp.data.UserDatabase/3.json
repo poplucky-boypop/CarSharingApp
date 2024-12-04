@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "fbcc529a59785dedde4789092ce86f81",
+    "identityHash": "7e181657d35a5ce4df04a37f41c1c4f4",
     "entities": [
       {
         "tableName": "user_login_table",
@@ -175,12 +175,74 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "car_reservation",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `id_car_foreign` INTEGER NOT NULL, `id_user_foreign` INTEGER NOT NULL, `start_reservation` TEXT NOT NULL, `end_reservation` TEXT NOT NULL, `status_reservation` TEXT NOT NULL, `days_reservation` INTEGER NOT NULL, `full_price` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "idCarForeign",
+            "columnName": "id_car_foreign",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idUserForeign",
+            "columnName": "id_user_foreign",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startReservation",
+            "columnName": "start_reservation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endReservation",
+            "columnName": "end_reservation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statusReservation",
+            "columnName": "status_reservation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dayReservation",
+            "columnName": "days_reservation",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fullPrice",
+            "columnName": "full_price",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fbcc529a59785dedde4789092ce86f81')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7e181657d35a5ce4df04a37f41c1c4f4')"
     ]
   }
 }

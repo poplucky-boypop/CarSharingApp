@@ -22,6 +22,9 @@ interface UserDao {
     @Query("SELECT * FROM car_info WHERE name LIKE '%'||:name||'%'")
     suspend fun getCarsByName(name: String): List<CarInfo>
 
+    @Query("SELECT * FROM car_info WHERE id = :carId")
+    suspend fun getCarById(carId: Long): CarInfo
+
     @Insert(entity = CarBookmarksEntity::class)
     suspend fun addBookmark(bookmark: CarBookmarksEntity)
 
@@ -33,4 +36,19 @@ interface UserDao {
 
     @Query("SELECT * FROM car_bookmarks WHERE id_user_foreign = :idUser AND id_car_foreign = :idCar")
     suspend fun findCarInBookmarksById(idUser: Long, idCar: Long): CarBookmarksEntity
+
+    @Insert(entity = CarReservationEntity::class)
+    fun addReservation(reservation: CarReservationEntity)
+
+    @Query("DELETE FROM car_bookmarks WHERE id_user_foreign = :idUser AND id_car_foreign = :idCar")
+    fun deleteBookmark(idUser: Long, idCar: Long)
+
+    @Query("SELECT * FROM car_reservation")
+    suspend fun getAllReservations(): List<CarReservationEntity>
+
+    @Query("SELECT car_reservation.id, car_reservation.end_reservation, car_reservation.start_reservation, car_reservation.status_reservation, car_reservation.days_reservation, car_reservation.full_price, car_info.name, car_info.brand, car_reservation.id_car_foreign, car_reservation.id_user_foreign FROM car_reservation JOIN car_info ON car_reservation.id_car_foreign = car_info.id")
+    fun getReservationItems(): Flow<List<ReservationsTurple>>
+
+    @Query("DELETE FROM car_reservation WHERE id = :id")
+    fun deleteReservationById(id: Long)
 }

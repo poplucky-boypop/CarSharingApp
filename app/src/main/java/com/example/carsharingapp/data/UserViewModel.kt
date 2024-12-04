@@ -19,6 +19,9 @@ class UserViewModel(private val userDao: UserDao): ViewModel() {
         }
     }
 
+    fun getAllReservation() =
+        userDao.getReservationItems().asLiveData()
+
     class Factory(private val userDao: UserDao) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(UserViewModel::class.java)) {

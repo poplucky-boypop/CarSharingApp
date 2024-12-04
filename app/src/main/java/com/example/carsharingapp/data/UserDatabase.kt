@@ -11,7 +11,8 @@ import androidx.room.RoomDatabase
         //UserInfo::class,
         UserLoginEntity::class,
         CarInfo::class,
-        CarBookmarksEntity::class
+        CarBookmarksEntity::class,
+        CarReservationEntity::class
     ]
 )
 abstract class UserDatabase: RoomDatabase() {

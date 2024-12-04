@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
+import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.carsharingapp.MainActivity
@@ -42,6 +44,7 @@ class SettingsFragment : Fragment() {
 
         // Найдите элемент "Тема"
         val themeSection = view.findViewById<RelativeLayout>(R.id.rlProfile)
+        val myReservations = view.findViewById<RelativeLayout>(R.id.rlMyReservations)
 
         val tvSettingsFIO : TextView = view.findViewById(R.id.tvSettingsFIO)
         val tvSettingsEmail : TextView = view.findViewById(R.id.tvSettingsEmail)
@@ -62,6 +65,13 @@ class SettingsFragment : Fragment() {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container_settings, ProfileFragment()) // Убедитесь, что fragment_container — это ID контейнера, где размещается фрагмент
                 .addToBackStack(null) // Добавьте транзакцию в back stack для возврата
+                .commit()
+        }
+
+        myReservations.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_settings, AllReservationsFragment())
+                .addToBackStack(null)
                 .commit()
         }
     }

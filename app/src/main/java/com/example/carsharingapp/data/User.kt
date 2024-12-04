@@ -77,3 +77,16 @@ data class CarBookmarksEntity (
     @ColumnInfo(name = "id_user_foreign") val idUserForeign: Long,
     @ColumnInfo(name = "id_car_foreign") val idCarForeign: Long
 )
+
+@Entity(tableName = "car_reservation")
+data class CarReservationEntity (
+    @PrimaryKey(autoGenerate = true)
+    val id: Long? = null,
+    @ColumnInfo(name = "id_car_foreign") val idCarForeign: Long,
+    @ColumnInfo(name = "id_user_foreign") val idUserForeign: Long,
+    @ColumnInfo(name = "start_reservation") val startReservation: String,
+    @ColumnInfo(name = "end_reservation") val endReservation: String,
+    @ColumnInfo(name = "status_reservation") val statusReservation: String,
+    @ColumnInfo(name = "days_reservation") val dayReservation: Long,
+    @ColumnInfo(name = "full_price") val fullPrice: Long
+)

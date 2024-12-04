@@ -13,7 +13,8 @@ import com.example.carsharingapp.data.CarInfo
 class RecyclerCarsAdapter(var mList: List<CarInfo>) :
     RecyclerView.Adapter<RecyclerCarsAdapter.RecyclerCarsViewHolder>() {
 
-        var onButtonClick : ((CarInfo) -> Unit)? = null
+        var onButtonClickCarProfile : ((CarInfo) -> Unit)? = null
+        var onButtonClickRegistrationReservation : ((CarInfo) -> Unit)? = null
 
     inner class RecyclerCarsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageCar: ImageView = itemView.findViewById(R.id.ivCarMers)
@@ -23,6 +24,7 @@ class RecyclerCarsAdapter(var mList: List<CarInfo>) :
         val transmissionCar: TextView = itemView.findViewById(R.id.tvTransmissionCar)
         val fuelCar: TextView = itemView.findViewById(R.id.tvFuelCar)
         val openCarProfile: android.widget.Button = itemView.findViewById(R.id.btnOpenCarProfile)
+        val openRegistrationReservation: android.widget.Button = itemView.findViewById(R.id.btnOpenRegistrationReservation)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerCarsViewHolder {
@@ -45,7 +47,11 @@ class RecyclerCarsAdapter(var mList: List<CarInfo>) :
         holder.fuelCar.setText(mList[position].fuel)
 
         holder.openCarProfile.setOnClickListener {
-            onButtonClick?.invoke(carInfo)
+            onButtonClickCarProfile?.invoke(carInfo)
+        }
+
+        holder.openRegistrationReservation.setOnClickListener {
+            onButtonClickRegistrationReservation?.invoke(carInfo)
         }
     }
 

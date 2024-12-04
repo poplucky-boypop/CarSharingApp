@@ -1,6 +1,7 @@
 package com.example.carsharingapp
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -40,6 +41,9 @@ class ProgramMenuActivity : AppCompatActivity() {
             page.requestLayout()
         }
 
-
+        fun onSideElement() {
+            // Скрываем элемент, например, TextView с id `textViewToHide`
+            findViewById<com.google.android.material.tabs.TabLayout>(R.id.tlProgramMenu)?.visibility = View.VISIBLE
+        }
     }
 }

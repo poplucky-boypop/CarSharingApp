@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container_car_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.CarProfileFragment">
@@ -20,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/ibReturnBackCarProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_back"
@@ -33,14 +34,17 @@
 
             <TextView
                 android:id="@+id/textView11"
+                style="@style/textHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Детали"
-                style="@style/textHeading"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ibBookmark"
-                app:layout_constraintStart_toEndOf="@+id/imageButton3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <!--app:layout_constraintEnd_toStartOf="@+id/ibBookmark"
+                app:layout_constraintStart_toEndOf="@+id/ibReturnBackCarProfile"-->
 
             <ImageButton
                 android:id="@+id/ibBookmark"
@@ -53,6 +57,19 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/ibColorBookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_use_bookmark"
+                android:padding="6dp"
+                android:background="@color/white"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -72,6 +89,8 @@
             android:text="@string/hello_blank_fragment"
             android:layout_marginStart="24dp"
             android:layout_marginVertical="12dp"
+            style="@style/textHeading"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
@@ -135,6 +154,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view3" />
 
         <TextView
+            android:id="@+id/tvDescriptionCarProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Вот теперь точно описание"
@@ -143,6 +163,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
+        <android.widget.Button
+            android:id="@+id/btnStartRegistrationLease"
+            android:layout_width="match_parent"
+            style="@style/btnFiolStyle"
+            android:text="Продолжить"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="66dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

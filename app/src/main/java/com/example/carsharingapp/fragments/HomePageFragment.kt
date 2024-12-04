@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.carsharingapp.ProgramMenuActivity
 import com.example.carsharingapp.R
 import com.example.carsharingapp.adapters.RecyclerCarsAdapter
 import com.example.carsharingapp.data.CarInfo
@@ -54,7 +56,7 @@ class HomePageFragment : Fragment() {
                 //recyclerView.requestLayout()
             //}
             recyclerView.adapter = adapter
-            adapter.onButtonClick = { carInfo ->
+            adapter.onButtonClickCarProfile = { carInfo ->
                 val fragmentCarProfile = CarProfileFragment()
                 val bundle2 = Bundle()
                 bundle2.putParcelable("car_info", carInfo)
@@ -65,6 +67,27 @@ class HomePageFragment : Fragment() {
                 // Заменить текущий фрагмент на FragmentB
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container_home_page, fragmentCarProfile)
+                    .addToBackStack(null)
+                    .commit()
+            }
+            adapter.onButtonClickRegistrationReservation = { carInfo ->
+                val fragmentRegistrationLease = RegistrationLeaseFragment()
+                val bundle5 = Bundle()
+                bundle5.putParcelable("car_info", carInfo)
+
+
+                fragmentRegistrationLease.arguments = bundle5
+
+                // Заменить текущий фрагмент на FragmentB
+                parentFragmentManager.beginTransaction()
+                    //.replace(R.id.fragment_container_home_page, fragmentRegistrationLease)
+                    .replace(R.id.fragment_container_home_page, CarProfileFragment())
+                    //.replace(R.id.fragment_container_car_profile, fragmentRegistrationLease)
+                    .addToBackStack(null)
+                    .commit()
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_car_profile, fragmentRegistrationLease)
                     .addToBackStack(null)
                     .commit()
             }
@@ -105,6 +128,7 @@ class HomePageFragment : Fragment() {
         //recyclerView.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
         recyclerView.requestLayout()
         binding.root.requestLayout()
+        (activity as? ProgramMenuActivity)?.findViewById<com.google.android.material.tabs.TabLayout>(R.id.tlProgramMenu)?.visibility = View.VISIBLE
     }
 
 
