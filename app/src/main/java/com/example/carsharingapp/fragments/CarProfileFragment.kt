@@ -120,7 +120,8 @@ class CarProfileFragment : Fragment() {
 
             // Заменить текущий фрагмент на FragmentB
             parentFragmentManager.beginTransaction()
-                .add(R.id.fragment_container_car_profile, fragmentRegistrationLease)
+                //.add(R.id.fragment_container_car_profile, fragmentRegistrationLease)
+                .add(R.id.fragment_container_car_profile_activity, fragmentRegistrationLease)
                 .addToBackStack(null)
                 .commit()
         }

@@ -30,12 +30,14 @@ class EndRegistrationReservationFragment : Fragment() {
         val btnOpenReservationsEndReg = view.findViewById<TextView>(R.id.btnOpenReservationsEndReg)
 
         btnEndRegistrationReservation.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            //parentFragmentManager.popBackStack()
+            getActivity()?.finish();
         }
 
         btnOpenReservationsEndReg.setOnClickListener {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_car_profile, AllReservationsFragment())
+                //.replace(R.id.fragment_container_car_profile, AllReservationsFragment())
+                .replace(R.id.fragment_container_car_profile_activity, AllReservationsFragment())
                 .addToBackStack(null)
                 .commit()
         }

@@ -103,7 +103,8 @@ class RegistrationLeaseFragment : Fragment() {
                 //parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 parentFragmentManager.popBackStack()
                 parentFragmentManager.beginTransaction()
-                    .add(R.id.fragment_container_car_profile, EndRegistrationReservationFragment())
+                    //.add(R.id.fragment_container_car_profile, EndRegistrationReservationFragment())
+                    .add(R.id.fragment_container_car_profile_activity, EndRegistrationReservationFragment())
                     //.replace(R.id.fragment_container_car_profile, EndRegistrationReservationFragment())
                     .commit()
             }

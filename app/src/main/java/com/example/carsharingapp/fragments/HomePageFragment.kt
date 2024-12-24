@@ -1,5 +1,6 @@
 package com.example.carsharingapp.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.carsharingapp.CarProfileActivity
 import com.example.carsharingapp.ProgramMenuActivity
 import com.example.carsharingapp.R
 import com.example.carsharingapp.adapters.RecyclerCarsAdapter
@@ -65,10 +67,15 @@ class HomePageFragment : Fragment() {
                 fragmentCarProfile.arguments = bundle2
 
                 // Заменить текущий фрагмент на FragmentB
-                parentFragmentManager.beginTransaction()
+                /*parentFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container_home_page, fragmentCarProfile)
                     .addToBackStack(null)
-                    .commit()
+                    .commit()*/
+                val intent = Intent(requireContext(), CarProfileActivity::class.java).apply {
+                    putExtra("data_key", carInfo)
+                    putExtra("boolean_key", false)
+                }
+                startActivity(intent)
             }
             adapter.onButtonClickRegistrationReservation = { carInfo ->
                 val fragmentRegistrationLease = RegistrationLeaseFragment()
@@ -79,7 +86,7 @@ class HomePageFragment : Fragment() {
                 fragmentRegistrationLease.arguments = bundle5
 
                 // Заменить текущий фрагмент на FragmentB
-                parentFragmentManager.beginTransaction()
+                /*parentFragmentManager.beginTransaction()
                     //.replace(R.id.fragment_container_home_page, fragmentRegistrationLease)
                     .replace(R.id.fragment_container_home_page, CarProfileFragment())
                     //.replace(R.id.fragment_container_car_profile, fragmentRegistrationLease)
@@ -89,7 +96,12 @@ class HomePageFragment : Fragment() {
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container_car_profile, fragmentRegistrationLease)
                     .addToBackStack(null)
-                    .commit()
+                    .commit()*/
+                val intent = Intent(requireContext(), CarProfileActivity::class.java).apply {
+                    putExtra("data_key", carInfo)
+                    putExtra("boolean_key", true)
+                }
+                startActivity(intent)
             }
         }
 
