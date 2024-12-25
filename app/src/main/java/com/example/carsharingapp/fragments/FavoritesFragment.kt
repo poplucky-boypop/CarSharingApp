@@ -1,5 +1,6 @@
 package com.example.carsharingapp.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.carsharingapp.CarProfileActivity
 import com.example.carsharingapp.ProgramMenuActivity
 import com.example.carsharingapp.R
 import com.example.carsharingapp.adapters.RecyclerCarsAdapter
@@ -73,10 +75,16 @@ class FavoritesFragment : Fragment() {
                 fragmentCarProfile.arguments = bundle2
 
                 // Заменить текущий фрагмент на FragmentB
-                parentFragmentManager.beginTransaction()
+                /*parentFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container_bookmarks, fragmentCarProfile)
                     .addToBackStack(null)
-                    .commit()
+                    .commit()*/
+
+                val intent = Intent(requireContext(), CarProfileActivity::class.java).apply {
+                    putExtra("data_key", carInfo)
+                    putExtra("boolean_key", false)
+                }
+                startActivity(intent)
             }
             adapter.onButtonClickRegistrationReservation = { carInfo ->
                 val fragmentRegistrationLease = RegistrationLeaseFragment()
@@ -92,7 +100,7 @@ class FavoritesFragment : Fragment() {
                     .addToBackStack(null)
                     .commit()*/
 
-                parentFragmentManager.beginTransaction()
+                /*parentFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container_bookmarks, CarProfileFragment())
                     .addToBackStack(null)
                     .commit()
@@ -100,7 +108,13 @@ class FavoritesFragment : Fragment() {
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container_car_profile, fragmentRegistrationLease)
                     .addToBackStack(null)
-                    .commit()
+                    .commit()*/
+
+                val intent = Intent(requireContext(), CarProfileActivity::class.java).apply {
+                    putExtra("data_key", carInfo)
+                    putExtra("boolean_key", true)
+                }
+                startActivity(intent)
             }
             //adapter = RecyclerCarsAdapter(mList)
             //recyclerView.adapter = adapter

@@ -60,13 +60,18 @@ data class UserLoginEntity (
 @Entity(tableName = "car_info")
 data class CarInfo (
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    val id: Long? = null,
     val name: String,
     val brand: String,
     val price: String,
+    val save: String,
     val transmission: String,
     val fuel: String,
-    val description: String
+    val description: String,
+    val mileage: String,
+    val year: String,
+    val locate: String,
+    var imagePaths: List<String>
 ) : Parcelable
 
 

@@ -151,7 +151,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Начало аренды"
+                android:text="Конец аренды"
                 style="@style/textTitleCategoryProfile"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -203,6 +203,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    android:id="@+id/tvLocateRegistrationLease"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Авиамоторная ул., 8, стр. 2" />
@@ -267,7 +268,7 @@
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Р/день"
+                android:text=" Р"
                 style="@style/textGrayItemCar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -315,7 +316,7 @@
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Р/день"
+                android:text=" Р"
                 style="@style/textGrayItemCar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

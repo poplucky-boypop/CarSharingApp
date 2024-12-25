@@ -4,9 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
 @Database(
-    version = 3,
+    version = 2,
     entities = [
         //UserInfo::class,
         UserLoginEntity::class,
@@ -15,6 +16,7 @@ import androidx.room.RoomDatabase
         CarReservationEntity::class
     ]
 )
+@TypeConverters(Converters::class)
 abstract class UserDatabase: RoomDatabase() {
     abstract fun getUserDao(): UserDao
 
@@ -32,12 +34,12 @@ abstract class UserDatabase: RoomDatabase() {
                     context.applicationContext,
                     UserDatabase::class.java,
                     "user_database.db"
-                ).createFromAsset("inital_database.db").build()
+                ).build()
                 INSTANCE = instance
                 return instance
             }
         }
     }
 }
-
+//.createFromAsset("inital_database.db")
 //.fallbackToDestructiveMigration()

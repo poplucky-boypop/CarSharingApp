@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.carsharingapp.ProgramMenuActivity
 import com.example.carsharingapp.R
+import com.example.carsharingapp.adapters.ImageSwipeAdapter
 import com.example.carsharingapp.data.CarBookmarksEntity
 import com.example.carsharingapp.data.CarInfo
 import com.example.carsharingapp.data.UserDatabase
@@ -64,9 +65,13 @@ class CarProfileFragment : Fragment() {
         // Используем данные carInfo
         carInfo?.let {
             binding.tvNameCarProfile.setText("${it.brand} ${it.name}")
+            binding.vp2ImageSwapCarProfile.adapter = ImageSwipeAdapter(carInfo.imagePaths)
+            binding.tvLocateCarProfile.setText(carInfo.locate)
+            binding.tvDescriptionCarProfile.setText(carInfo.description)
             lifecycleScope.launch {
                 if (authToken != null) {
-                    isBookmark = db.getUserDao().findCarInBookmarksById(authToken, it.id)
+                    isBookmark =
+                        it.id?.let { it1 -> db.getUserDao().findCarInBookmarksById(authToken, it1) }
                     if (isBookmark != null){
                         imageBookmarks.visibility = View.GONE
                         imageColorBookmark.visibility = View.VISIBLE
@@ -97,7 +102,7 @@ class CarProfileFragment : Fragment() {
         imageColorBookmark.setOnClickListener {
             Thread{
                 if (authToken != null && carInfo != null) {
-                    db.getUserDao().deleteBookmark(authToken, carInfo.id)
+                    carInfo.id?.let { it1 -> db.getUserDao().deleteBookmark(authToken, it1) }
                 }
             }.start()
             imageBookmarks.visibility = View.VISIBLE

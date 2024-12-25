@@ -67,6 +67,7 @@ class RegistrationLeaseFragment : Fragment() {
 
         val startReservation = view.findViewById<TextView>(R.id.tvStartRegistrationReservation)
         val endReservation = view.findViewById<TextView>(R.id.tvEndRegistrationReservation)
+        val tvLocateRegistrationLease = view.findViewById<TextView>(R.id.tvLocateRegistrationLease)
         //val countDayRent = view.findViewById<TextView>(R.id.tvCountDayRent)
         val btnSetLease = view.findViewById<android.widget.Button>(R.id.btnSetLease)
         val db = UserDatabase.getDatabase(requireContext())
@@ -74,6 +75,7 @@ class RegistrationLeaseFragment : Fragment() {
 
         startReservation.setText("08:00, ${startResDate}")
         endReservation.setText("08:00, ${endResDate}")
+        tvLocateRegistrationLease.setText(globalCarInfo.locate)
         //countDayRent.setText(days.toString())
 
         startReservation.setOnClickListener {
@@ -89,7 +91,7 @@ class RegistrationLeaseFragment : Fragment() {
                 //val fullPrice = globalCarInfo.price.toLongOrNull()?.times(days)
                 val reservation = CarReservationEntity(
                     null,
-                    globalCarInfo.id,
+                    globalCarInfo.id?: 0,
                     authToken ?: 1,
                     startResDate,
                     endResDate,
@@ -148,9 +150,9 @@ class RegistrationLeaseFragment : Fragment() {
         countDayRent1.setText("x${days} дней")
         countDayRent2.setText("x${days} дней")
         val rentPrice = globalCarInfo.price.toLongOrNull()?.times(days)!!
-        fullPrice = rentPrice + 100*days
+        fullPrice = rentPrice + globalCarInfo.save.toInt()*days
         priceAllDayRent.setText("${rentPrice}")
-        priceAllDaySave.setText("${100*days}")
+        priceAllDaySave.setText("${globalCarInfo.save.toInt()*days}")
         tvFullPrice.setText("${fullPrice}Р")
     }
 

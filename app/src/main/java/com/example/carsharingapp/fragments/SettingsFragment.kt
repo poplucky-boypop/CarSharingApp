@@ -45,6 +45,7 @@ class SettingsFragment : Fragment() {
         // Найдите элемент "Тема"
         val themeSection = view.findViewById<RelativeLayout>(R.id.rlProfile)
         val myReservations = view.findViewById<RelativeLayout>(R.id.rlMyReservations)
+        val rlAddCar = view.findViewById<RelativeLayout>(R.id.rlAddCar)
 
         val tvSettingsFIO : TextView = view.findViewById(R.id.tvSettingsFIO)
         val tvSettingsEmail : TextView = view.findViewById(R.id.tvSettingsEmail)
@@ -71,6 +72,13 @@ class SettingsFragment : Fragment() {
         myReservations.setOnClickListener {
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container_settings, AllReservationsFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        rlAddCar.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_settings, BecomeHostFragment())
                 .addToBackStack(null)
                 .commit()
         }

@@ -25,6 +25,9 @@ interface UserDao {
     @Query("SELECT * FROM car_info WHERE id = :carId")
     suspend fun getCarById(carId: Long): CarInfo
 
+    @Insert(entity = CarInfo::class)
+    fun addCar(car: CarInfo)
+
     @Insert(entity = CarBookmarksEntity::class)
     suspend fun addBookmark(bookmark: CarBookmarksEntity)
 

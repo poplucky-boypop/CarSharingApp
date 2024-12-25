@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "7e181657d35a5ce4df04a37f41c1c4f4",
+    "identityHash": "46314623a58718b11a97251902f51f43",
     "entities": [
       {
         "tableName": "user_login_table",
@@ -90,13 +90,13 @@
       },
       {
         "tableName": "car_info",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `brand` TEXT NOT NULL, `price` TEXT NOT NULL, `transmission` TEXT NOT NULL, `fuel` TEXT NOT NULL, `description` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `brand` TEXT NOT NULL, `price` TEXT NOT NULL, `save` TEXT NOT NULL, `transmission` TEXT NOT NULL, `fuel` TEXT NOT NULL, `description` TEXT NOT NULL, `mileage` TEXT NOT NULL, `year` TEXT NOT NULL, `locate` TEXT NOT NULL, `imagePaths` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "name",
@@ -117,6 +117,12 @@
             "notNull": true
           },
           {
+            "fieldPath": "save",
+            "columnName": "save",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
             "fieldPath": "transmission",
             "columnName": "transmission",
             "affinity": "TEXT",
@@ -131,6 +137,30 @@
           {
             "fieldPath": "description",
             "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mileage",
+            "columnName": "mileage",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "year",
+            "columnName": "year",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "locate",
+            "columnName": "locate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imagePaths",
+            "columnName": "imagePaths",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -242,7 +272,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7e181657d35a5ce4df04a37f41c1c4f4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '46314623a58718b11a97251902f51f43')"
     ]
   }
 }
